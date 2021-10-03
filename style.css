@@ -1,0 +1,225 @@
+/*===========================RESET*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+ul {
+  list-style: none;
+}
+
+/*===============================VARIABLS*/
+:root {
+  /* o comando ROOT é precedido de ":"*/
+  /* o comando -- serve para "setar" uma variável que pode ser chamada
+  por outors elementos (ver: "COLOR: VAR(--COLOR)"*/
+  --header-height: 4.5rem;
+
+  /* colors */
+  --hue: 159;
+  /* HSL color mode */
+  --base-color: hsl(var(--hue) 36% 57%);
+  --base-color-second: hsl(var(--hue) 65% 88%);
+  --base-color-alt: hsl(var(--hue) 57% 53%);
+  --title-color: hsl(var(--hue) 41% 10%);
+  --text-color: hsl(0 0% 46%);
+  --text-color-light: hsl(0 0% 98%);
+  --body-color: hsl(0 0% 98%);
+}
+
+/*==========================BASE*/
+body {
+  /* número centesimal (Ex.: 400) é o "peso" da fonte*/
+  font: 400 1rem 'dm sans', sans-serif;
+  color: var(--text-color);
+  background-color: var(--body-color);
+  /*VERIFICAR O QUE É WEBKIT??*/
+  -webkit-font-smoothing: antialiased;
+}
+
+.title {
+  font: 700 1.875rem 'poppins', sans-serif;
+  color: var(--title-color);
+  -webkit-font-smoothing: auto;
+}
+
+.divider-1 {
+  height: 1px;
+  background: linear-gradient(
+    270deg,
+    hsla(var(--hue), 36%, 57%, 1) 0%,
+    hsla(var(--hue), 65%, 88%, 0.34) 100%
+  );
+}
+
+/*==========================LAYOUT*/
+
+#header1 {
+  border-bottom: 1px solid #e4e4e4;
+  margin-bottom: 2rem;
+  display: flex;
+
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background-color: var(--body-color);
+}
+
+/*==========================NAVIGATION*/
+nav {
+  /*REM=forma de proporção responsiva*/
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+nav ul li {
+  text-align: center;
+}
+
+nav ul li a {
+  transition: 0.5s;
+}
+
+nav ul li a:hover {
+  color: var(--base-color);
+}
+
+nav .menu {
+  opacity: 0;
+  visibility: hidden;
+}
+/*==========================MENU VISÍVEL*/
+nav.show .menu {
+  opacity: 1;
+  visibility: visible;
+
+  background: var(--body-color);
+
+  height: 100vh;
+  width: 100vw;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+nav.show .menu {
+  display: grid;
+  place-content: center;
+}
+
+nav.show ul.grid {
+  gap: 4rem;
+}
+/*==========================LOGO*/
+.logo {
+  font: 700 1.31rem 'poppins', sans-serif;
+  color: var(--title-color);
+}
+
+.logo span {
+  /*TAG <span> foi colocada no HTML para viabilizar a alteração de cor de metade do logo*/
+  color: var(--base-color);
+}
+
+.container {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.section {
+  padding: 5rem 0;
+}
+
+main {
+  margin-top: calc(var(--header-height) + 2rem);
+}
+
+/*===============================home*/
+#home {
+  overflow: hidden;
+}
+
+#home .container {
+  margin: 0;
+}
+
+#home .image {
+  /*faz com que o "quadrado sombra" da imagem acompanhe o alinhamento da imagem principal; caso contrário ele fica no topo da página*/
+  position: relative;
+}
+
+#home .image::before {
+  /*sombra da imagem*/
+  content: '';
+  height: 100%;
+  width: 100%;
+  background: var(--base-color-second);
+  position: absolute;
+  z-index: 0;
+  /*verificar esse TOP*/
+  /*regra de 3 baseado no tamanho da imagem (precisa de um layout)*/
+  top: -16.8%;
+  left: 16.7%;
+}
+
+#home .image img {
+  position: relative;
+  right: 2.93em;
+}
+
+#home .image img,
+#home .image::before {
+  border-radius: 0.25rem;
+}
+
+#home .divtextbut {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  text-align: center;
+}
+
+#home .divtextbut h1 {
+  margin-bottom: 1rem;
+}
+
+#home .divtextbut p {
+  margin-bottom: 2rem;
+  max-width: 100%;
+}
+
+.button {
+  background-color: var(--base-color);
+  color: var(--text-color-light);
+  height: 3.5rem;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 2rem;
+  border-radius: 0.25rem;
+  font: 500 1rem 'dm sans', sans-serif;
+  transition: background 0.3s;
+}
+
+.button:hover {
+  background: var(--base-color-alt);
+}
