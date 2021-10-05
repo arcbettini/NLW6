@@ -8,7 +8,8 @@
     <title>Labirinto de Cores</title>
     <!--STYLE/CSS-->
     <link rel="stylesheet" href="style.css" />
-    <!--FONTES-->
+    <!--STYLE/icones-->
+    <link rel="stylesheet" href="assets/style.css" <!--FONTES-- />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,7 +19,8 @@
   </head>
   <body>
     <header id="header1">
-      <nav class="container show">
+      <nav class="container">
+        <!--a classe SHOW será substituída pelo JS no futuro-->
         <a class="logo" href="#">Labirinto <span>de Cores</span></a>
         <!--MENU-->
         <div class="menu">
@@ -32,8 +34,10 @@
           </ul>
         </div>
         <!--/MENU-->
-        <div class="open">...</div>
-        <div class="close">xxx</div>
+
+        <!--PREPARANDO INTERAÇÃO MENU (JS)-->
+        <div class="toggle icon-menu"></div>
+        <div class="toggle icon-close"></div>
       </nav>
     </header>
 
@@ -57,6 +61,8 @@
         </div>
       </section>
       <div class="divider-1"></div>
+      <!--SECTIONS (ABOUT/SERVICES/TESTIMONIALS CONTACT)-->
+      <!--comando para incluir TAG>CLASS>ID (section.section#about>.container.grid)-->
       <section class="section" id="about">
         <div class="container grid">SOBRE</div>
       </section>

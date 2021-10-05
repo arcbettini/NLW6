@@ -15,6 +15,7 @@ img {
 }
 
 ul {
+  /*limpa os "pontinhos" da lista*/
   list-style: none;
 }
 
@@ -37,7 +38,7 @@ ul {
   --body-color: hsl(0 0% 98%);
 }
 
-/*==========================BASE*/
+/*=====BASE=====*/
 body {
   /* número centesimal (Ex.: 400) é o "peso" da fonte*/
   font: 400 1rem 'dm sans', sans-serif;
@@ -62,22 +63,38 @@ body {
   );
 }
 
-/*==========================LAYOUT*/
+/*=====LAYOUT=====*/
 
 #header1 {
   border-bottom: 1px solid #e4e4e4;
   margin-bottom: 2rem;
   display: flex;
 
-  width: 100%;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 100;
   background-color: var(--body-color);
+  width: 100%;
 }
 
-/*==========================NAVIGATION*/
+main {
+  /*calculo de espaço (16px = 1rem)*/
+  margin-top: calc(var(--header-height) + 2rem);
+}
+
+/*=====LOGO=====*/
+.logo {
+  font: 700 1.31rem 'poppins', sans-serif;
+  color: var(--title-color);
+}
+
+.logo span {
+  /*TAG <span> foi colocada no HTML para viabilizar a alteração de cor de metade do logo*/
+  color: var(--base-color);
+}
+
+/*=====NAVIGATION=====*/
 nav {
   /*REM=forma de proporção responsiva*/
   height: var(--header-height);
@@ -92,33 +109,55 @@ nav ul li {
 }
 
 nav ul li a {
-  transition: 0.5s;
+  transition: color 0.5s;
+  position: relative;
 }
 
 nav ul li a:hover {
+  /*alteração de cor do link quando passar o mouse*/
   color: var(--base-color);
 }
+
+/*barra animada no menu*/
+nav ul li a::after {
+  content: '';
+  width: 0%;
+  height: 2px;
+  background: var(--base-color);
+  position: absolute;
+  left: 0;
+  bottom: -1.5rem;
+  transition: width 0.5s;
+}
+
+nav ul li a:hover:after {
+  width: 100%;
+}
+/*/barria animada menu*/
 
 nav .menu {
   opacity: 0;
   visibility: hidden;
 }
-/*==========================MENU VISÍVEL*/
+/*=====MENU VISÍVEL=====*/
 nav.show .menu {
+  /*existe uma diferença entre "tag_espaço_.class" e "tag.class" - aprofundar*/
   opacity: 1;
   visibility: visible;
 
   background: var(--body-color);
-
+  /*seta um "fundo" para o menu"*/
   height: 100vh;
   width: 100vw;
-
+  /*position fixed faz com que a página "role" mas o menu permanece*/
   position: fixed;
+  /*TOP e LEFT = 0 serve para "grudar" no topo/esquerda*/
   top: 0;
   left: 0;
 }
 
 nav.show .menu {
+  /*distribuição dos itens da lista no espaço*/
   display: grid;
   place-content: center;
 }
@@ -126,16 +165,26 @@ nav.show .menu {
 nav.show ul.grid {
   gap: 4rem;
 }
-/*==========================LOGO*/
-.logo {
-  font: 700 1.31rem 'poppins', sans-serif;
-  color: var(--title-color);
+
+nav .icon-close {
+  visibility: hidden;
+  opacity: 0;
 }
 
-.logo span {
-  /*TAG <span> foi colocada no HTML para viabilizar a alteração de cor de metade do logo*/
-  color: var(--base-color);
+nav.show div.icon-close {
+  visibility: visible;
+  opacity: 1;
+  position: absolute;
+  right: 1.5em;
+  /*falta transição*/
 }
+
+.toggle {
+  color: var(--base-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+/*=====/MENU VISÍVEL=====*/
 
 .container {
   margin-left: 1.5rem;
@@ -151,11 +200,7 @@ nav.show ul.grid {
   padding: 5rem 0;
 }
 
-main {
-  margin-top: calc(var(--header-height) + 2rem);
-}
-
-/*===============================home*/
+/*=====home=====*/
 #home {
   overflow: hidden;
 }
